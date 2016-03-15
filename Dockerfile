@@ -82,7 +82,7 @@ RUN sudo useradd seluser --shell /bin/bash --create-home \
 # Selenium Configuration
 #========================
 
-EXPOSE 4444 5900
+EXPOSE 4445 5900
 
 ENV GRID_NEW_SESSION_WAIT_TIMEOUT -1
 ENV GRID_JETTY_MAX_THREADS -1
