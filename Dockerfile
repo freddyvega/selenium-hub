@@ -4,13 +4,6 @@ MAINTAINER Freddy Vega
 # ENV DEBIAN_FRONTEND noninteractive
 # ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-#=============
-# Set timezone
-#=============
-ENV TZ "US/Eastern"
-RUN echo "US/Eastern" | sudo tee /etc/timezone
-RUN dpkg-reconfigure --frontend noninteractive tzdata
-
 #================================================
 # Customize sources for apt-get
 #================================================
@@ -30,6 +23,13 @@ RUN apt-get update -qqy \
     wget \
   && rm -rf /var/lib/apt/lists/* \
   && sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' ./usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security
+
+#=============
+# Set timezone
+#=============
+ENV TZ "US/Eastern"
+RUN echo "US/Eastern" | sudo tee /etc/timezone
+RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 #=======================
 # Install xvfb and fonts
