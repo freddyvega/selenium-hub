@@ -4,6 +4,12 @@ MAINTAINER Freddy Vega
 # ENV DEBIAN_FRONTEND noninteractive
 # ENV DEBCONF_NONINTERACTIVE_SEEN true
 
+# Update the repositories
+RUN apt-get -yqq update
+
+# Upgrade packages
+RUN apt-get -yqq upgrade
+
 #================================================
 # Customize sources for apt-get
 #================================================
@@ -21,6 +27,16 @@ RUN apt-get update -qqy \
     sudo \
     unzip \
     wget \
+    openssl \
+    dnsutils \
+    curl \
+    xvfb \
+    fonts-ipafont-gothic \
+    xfonts-100dpi \
+    xfonts-75dpi \
+    xfonts-scalable \
+    xfonts-cyrillic \
+    x11vnc \
   && rm -rf /var/lib/apt/lists/* \
   && sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' ./usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security
 
@@ -34,12 +50,12 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 #=======================
 # Install xvfb and fonts
 #=======================
-RUN apt-get -yqq install xvfb fonts-ipafont-gothic xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
+# RUN apt-get -yqq install xvfb fonts-ipafont-gothic xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
 
 #============
 # Install VNC
 #============
-RUN apt-get -yqq install x11vnc
+# RUN apt-get -yqq install x11vnc
 RUN mkdir -p ~/.vnc
 
 #=======================
