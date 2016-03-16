@@ -96,6 +96,7 @@ ENV GRID_UNREGISTER_IF_STILL_DOWN_AFTER 30000
 COPY generate_config /opt/selenium/generate_config
 COPY entry_point.sh /opt/bin/entry_point.sh
 RUN chown -R seluser /opt/selenium
+RUN chmod +x /opt/bin/entry_point.sh
 
 USER seluser
 
